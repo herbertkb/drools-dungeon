@@ -1,0 +1,6 @@
+rule 'greeting'
+when
+    $name: String()
+then
+    System.out.println("Greetings, " + $name);
+end
