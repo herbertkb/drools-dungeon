@@ -64,16 +64,51 @@ then
 end
 ```
 
- Let's make it more real:
+ Let's make it more real. Say we have two POJOs:
+
+```java
+public class Weather {
+    private boolean isRaining;
+
+    // getters + setters 
+}
+
+```
+
+```java
+public class Thing {
+    private boolean isWet;
+
+    // getters + setters 
+}
 
 ```
 
 
 ```
+package class.logic.example
+
+rule "Things get wet outside"
+when 
+    Weather( raining )
+    $t : Thing()
+then
+    $t.isWet( true );
+end
+
+```
+### Cross Product 
+There can be lots of Things. 
+If we aren't careful, we may be comparing every Thing to every other possible Thing.
+So we need to be more specific. This is variable contraint.
+
+rule
+when
+    $thing : Thing()
+    $
 
 
-- Some  Simple rule examples
-- Cross Product (narrowing by specifying variables)
+
 - Salience 
 - Inference
 - KnowledgeAgent (maybe drop)
