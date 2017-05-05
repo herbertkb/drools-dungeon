@@ -26,7 +26,7 @@ Today we will learn about Drools, why you should care about Drools, and how to s
     - Knowledge Base as documentation
 
 - Separate your business logic from data
-    - vs. OO which combine data with its logic
+    - vs. OO which combines data with their logics
     - easier to maintain, change, adapt
     - easier to understand logic that crosses domains
         - clean rules files instead of messy controllers
@@ -34,8 +34,8 @@ Today we will learn about Drools, why you should care about Drools, and how to s
 
 - Cloud ready
     - small footprint, very containerable
+    - KIE-Server REST interface
     - PHREAK algorithm easily scales across threads
-    - KIEServer REST interface
 
 ----------------------------------------
 
@@ -45,7 +45,32 @@ Today we will learn about Drools, why you should care about Drools, and how to s
 
 ### PHREAK 
 
+----------------------------------------
+
 ## Too much theory. Can you show me something real?
+
+### Rules Rule
+
+```
+package org.some.package.name
+
+rule 'Some rule name'
+
+when
+    // conditions
+then
+    // actions
+
+end
+```
+
+ Let's make it more real:
+
+```
+
+
+```
+
 
 - Some  Simple rule examples
 - Cross Product (narrowing by specifying variables)
@@ -58,15 +83,24 @@ Today we will learn about Drools, why you should care about Drools, and how to s
 
 Yes! Let me demonstrate. 
 
-First, let's hop on a cloud (read: someone else's computer) and pull down the official container. 
+First, let's hop on a cloud (read: someone else's computer) and pull down the official containers.
 
-    docker pull jboss/drools-workbench
+We're going to need two: the Drools Workbench 
+
+    docker pull jboss/drools-workbench-showcase
+
+And KieServer
+
+    docker pull jboss/kie-server-showcase
 
 This may take awhile. I already did this on my machine, so let's keep going.
 
 Next, we start it:
 
-    docker run -p 8080:8080 -p 8001:8001 -d --name drools-workbench jboss/drools-workbench:latest
+    docker run -p 8080:8080 -p 8001:8001 -d --name drools-workbench jboss/drools-workbench-showcase:latest
+
+    docker run -p 8180:8080 -d --name kie-server --link drools-wb:kie_wb jboss/kie-server-showcase:latest
+
 
 
 
